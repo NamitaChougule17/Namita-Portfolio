@@ -58,7 +58,7 @@ export default function Contact() {
       <div className="text-center">
         <SectionHeading>Contact Me</SectionHeading>
         <p className="mx-auto mt-2 max-w-2xl text-base sm:text-lg text-gray-800">
-          I'd love to hear from you — whether you have a question, opportunity, or just want to say hi!
+          I&apos;d love to hear from you — whether you have a question, opportunity, or just want to say hi!
         </p>
       </div>
 
