@@ -3,11 +3,7 @@ import { CgWorkAlt } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import factchecker from "@/public/factchecker.png";
-import f1 from "@/public/f1.png";
-import dock from "@/public/dock.png";
-import uni from "@/public/uni.png";
-import rmtdevImg from "@/public/rmtdev.png";
-import wordanalyticsImg from "@/public/wordanalytics.png";
+
 
 export const links = [
   { name: "Home", hash: "#home" },
@@ -19,7 +15,7 @@ export const links = [
 
 
 import { LuBriefcase } from "react-icons/lu";
-import { table } from "console";
+
 
 export const experiencesData = [
   {
@@ -193,8 +189,8 @@ export const certificationsData = [
     name: "AWS Certified Data Engineer – Associate",
     issuer: "Amazon Web Services",
     date: "",
-    credentialUrl: "",
-    credentialId: "",
+    credentialUrl: "https://www.credly.com/badges/b35ba266-3350-498e-a61d-48b0e4006583/linked_in_profile",
+    credentialId: "9eabc19bc50f46bf9371b3f1c542e097",
   },
   {
     name: "Build & Architect Data pipelines using AWS",

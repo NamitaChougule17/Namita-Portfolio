@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import SectionHeading from "./section-heading";
 import { experiencesData } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
@@ -16,6 +16,69 @@ const gradientSchemes = [
   { bg: "from-blue-900 via-cyan-900 to-teal-900", border: "from-blue-400/60 via-cyan-400/60 to-teal-400/60", dot: "from-blue-400 to-teal-500", accent: "blue" },
   { bg: "from-emerald-900 via-teal-900 to-cyan-900", border: "from-emerald-400/60 via-teal-400/60 to-cyan-400/60", dot: "from-emerald-400 to-cyan-500", accent: "emerald" },
 ];
+
+// Component that handles card expansion with proper height animation
+function ExpandingCard({ 
+  isExpanded, 
+  scheme, 
+  onClick, 
+  children 
+}: { 
+  isExpanded: boolean; 
+  scheme: typeof gradientSchemes[number]; 
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number | "auto">("auto");
+
+  useEffect(() => {
+    if (contentRef.current) {
+      // Set height based on actual content height
+      const contentHeight = contentRef.current.scrollHeight;
+      setHeight(contentHeight);
+    }
+  }, [isExpanded, children]);
+
+  // Also measure on resize
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(() => {
+      if (contentRef.current) {
+        setHeight(contentRef.current.scrollHeight);
+      }
+    });
+
+    if (contentRef.current) {
+      resizeObserver.observe(contentRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  return (
+    <motion.div
+      onClick={onClick}
+      className={`cursor-pointer group relative rounded-xl p-[1.5px] bg-gradient-to-br ${scheme.border} transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(99,102,241,0.7)] shadow-[0_8px_30px_-10px_rgba(99,102,241,0.4)]`}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.2 }}
+    >
+      {/* Inner card with gradient background */}
+      <motion.div 
+        className={`relative rounded-xl bg-gradient-to-br ${scheme.bg} overflow-hidden`}
+        animate={{
+          height: height === "auto" ? "auto" : `${height}px`
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
+        <div ref={contentRef}>
+          {children}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function Experience() {
   const { ref } = useSectionInView("Experience");
@@ -51,22 +114,20 @@ export default function Experience() {
                   {/* Content - Left or Right */}
                   <div className={`w-full sm:w-[calc(50%-2rem)] ${isLeft ? 'sm:pr-8' : 'sm:pl-8'} ${isLeft ? 'sm:mr-auto' : 'sm:ml-auto'}`}>
                     {/* Expandable Box/Card with colorful gradient */}
-                    <motion.div
+                    <ExpandingCard
+                      isExpanded={isExpanded}
+                      scheme={scheme}
                       onClick={() => setExpandedIndex(isExpanded ? null : index)}
-                      className={`cursor-pointer group relative rounded-xl p-[1.5px] bg-gradient-to-br ${scheme.border} transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(99,102,241,0.7)] shadow-[0_8px_30px_-10px_rgba(99,102,241,0.4)]`}
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
                     >
-                      {/* Inner card with gradient background */}
-                      <div className={`relative rounded-xl bg-gradient-to-br ${scheme.bg} p-6 sm:p-8 overflow-hidden`}>
-                        {/* Gradient overlay for depth */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-transparent z-0" />
-                        
-                        {/* Animated gradient on hover */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${scheme.border} opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-0`} />
-                        
-                        {/* Content */}
-                        <div className="relative z-10">
+                      <div className="p-6 sm:p-8">
+                          {/* Gradient overlay for depth */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-transparent z-0" />
+                          
+                          {/* Animated gradient on hover */}
+                          <div className={`absolute inset-0 bg-gradient-to-br ${scheme.border} opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-0`} />
+                          
+                          {/* Content */}
+                          <div className="relative z-10">
                           {/* Primary view - always visible */}
                           <div className={`${isLeft ? 'sm:text-right' : 'sm:text-left'}`}>
                             {/* Role title - dominant */}
@@ -107,7 +168,7 @@ export default function Experience() {
                                 animate={{ height: "auto", opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
                                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                                className="overflow-hidden"
+                                style={{ overflow: "hidden" }}
                               >
                                 <div className="pt-6 mt-6 border-t border-white/20">
                                   {/* Bullet points - grouped and scannable */}
@@ -129,9 +190,9 @@ export default function Experience() {
                               </motion.div>
                             )}
                           </AnimatePresence>
+                          </div>
                         </div>
-                      </div>
-                    </motion.div>
+                    </ExpandingCard>
                   </div>
 
                   {/* Timeline dot - centered, positioned on the box, matching gradient */}
