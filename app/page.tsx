@@ -12,6 +12,7 @@ export default function Home() {
       <Intro />
       <SectionDivider />
       <Experience />
+      <SectionDivider />
       <Education />
       <SectionDivider />
       <Projects />

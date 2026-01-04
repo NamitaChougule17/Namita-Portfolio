@@ -35,11 +35,19 @@ const getCertIcon = (certName: string, issuer: string) => {
   const issuerLower = issuer.toLowerCase();
   
   try {
-    if (issuerLower.includes("amazon web services") || issuerLower.includes("aws") || nameLower.includes("aws")) {
+    // Check issuer first to prioritize platform over topic
+    if (issuerLower.includes("udemy")) {
+      return <FaGraduationCap className="w-8 h-8" />;
+    }
+    if (issuerLower.includes("amazon web services") || issuerLower.includes("aws")) {
       return <FaAws className="w-8 h-8" />;
     }
     if (issuerLower.includes("snowflake") || nameLower.includes("snowflake")) {
       return <SiSnowflake className="w-8 h-8" />;
+    }
+    // Check name if issuer doesn't match
+    if (nameLower.includes("aws")) {
+      return <FaAws className="w-8 h-8" />;
     }
     if (nameLower.includes("oracle") || issuerLower.includes("oracle")) {
       return <SiOracle className="w-8 h-8" />;
