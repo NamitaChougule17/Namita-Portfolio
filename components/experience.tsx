@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import SectionHeading from "./section-heading";
-import { experiencesData, educationData } from "@/lib/data";
+import { experiencesData } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
@@ -22,7 +22,7 @@ export default function Experience() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
-    <section id="experience" ref={ref} className="scroll-mt-28 mb-28 sm:mb-40">
+    <section id="experience" ref={ref} className="scroll-mt-28 mb-16 sm:mb-20">
       <SectionHeading>My Experience</SectionHeading>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -141,104 +141,6 @@ export default function Experience() {
             })}
           </div>
         </div>
-
-        {/* Education Section */}
-        {educationData && educationData.length > 0 && (
-          <div className="mt-20 pt-16 border-t border-gray-700/30">
-            <h2 className="text-lg sm:text-xl font-semibold text-black dark:text-gray-200 mb-12 uppercase tracking-wider text-center">
-              Education
-            </h2>
-            <div className="relative min-h-[200px]">
-              {/* Vertical timeline line for education */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500/40 via-blue-500/40 to-transparent hidden sm:block" />
-              
-              {/* Timeline dots - positioned on same horizontal line */}
-              {educationData.map((edu, index) => {
-                const eduScheme = gradientSchemes[(index + 2) % gradientSchemes.length];
-                return (
-                  <div
-                    key={`dot-${index}`}
-                    className={`absolute left-1/2 transform -translate-x-1/2 top-6 sm:top-8 w-4 h-4 rounded-full bg-gradient-to-br ${eduScheme.dot} border-2 border-gray-900 z-20 shadow-lg hidden sm:block`}
-                  />
-                );
-              })}
-              
-              {/* Side by side layout for education entries */}
-              <div className="relative flex flex-col sm:flex-row sm:items-start sm:justify-center gap-8 sm:gap-4">
-                {educationData.map((edu, index) => {
-                  // Extract year range from date (e.g., "Jan 2024 - May 2025" -> "2024 - 2025")
-                  const yearMatch = edu.date.match(/(\d{4})\s*-\s*.*?(\d{4})/);
-                  const yearRange = yearMatch ? `${yearMatch[1]} - ${yearMatch[2]}` : edu.date;
-                  const isLeft = index % 2 === 0; // Alternate left and right
-                  // Use different gradient schemes for education (starting from cyan/blue)
-                  const eduScheme = gradientSchemes[(index + 2) % gradientSchemes.length];
-                  
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.4, delay: (experiencesData.length + index) * 0.08 }}
-                      className={`relative w-full sm:w-[calc(50%-2rem)] ${isLeft ? 'sm:pr-8' : 'sm:pl-8'}`}
-                    >
-                      {/* Colorful Box/Card for Education */}
-                      <motion.div
-                        className={`relative rounded-xl p-[1.5px] bg-gradient-to-br ${eduScheme.border} transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(99,102,241,0.7)] shadow-[0_8px_30px_-10px_rgba(99,102,241,0.4)]`}
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {/* Inner card with gradient background */}
-                        <div className={`relative rounded-xl bg-gradient-to-br ${eduScheme.bg} p-6 sm:p-8 overflow-hidden`}>
-                          {/* Gradient overlay for depth */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-transparent z-0" />
-                          
-                          {/* Animated gradient on hover */}
-                          <div className={`absolute inset-0 bg-gradient-to-br ${eduScheme.border} opacity-0 hover:opacity-20 transition-opacity duration-500 z-0`} />
-                          
-                          {/* Content */}
-                          <div className={`relative z-10 ${isLeft ? 'sm:text-right' : 'sm:text-left'}`}>
-                            {/* Date */}
-                            <p className="text-sm sm:text-base font-semibold text-black dark:text-gray-300 mb-2">
-                              {yearRange}
-                            </p>
-                            
-                            {/* Institution - dominant */}
-                            <p className="text-lg sm:text-xl font-bold text-black dark:text-white mb-1">
-                              {edu.institution}
-                            </p>
-                            
-                            {/* Degree title - secondary */}
-                            <p className="text-base sm:text-lg text-black dark:text-gray-200 mb-2">
-                              {edu.title}
-                            </p>
-                            
-                            {/* Location and Grade */}
-                            <div className={`flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 ${isLeft ? 'sm:justify-end' : 'sm:justify-start'}`}>
-                              {edu.location && (
-                                <p className="text-sm text-black dark:text-gray-300">
-                                  {edu.location}
-                                </p>
-                              )}
-                              {edu.grade && (
-                                <>
-                                  {edu.location && <span className="hidden sm:inline text-black/60 dark:text-gray-400/60">·</span>}
-                                  <p className="text-sm text-black dark:text-gray-300">
-                                    Grade: {edu.grade}
-                                  </p>
-                                </>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

@@ -27,6 +27,110 @@ html.dark {
   padding-left: 0.5rem; 
   margin-left: 0; 
 }
+
+/* Education section - ensure equal card heights and light text */
+.education-grid {
+  grid-auto-rows: 1fr;
+}
+
+.education-card-wrapper {
+  height: 220px !important;
+  min-height: 220px !important;
+  max-height: 220px !important;
+  display: flex;
+  width: 100%;
+}
+
+.education-card {
+  height: 100% !important;
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.education-card-inner {
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+/* Force white/light text colors - override ALL styles including Tailwind and dark mode */
+#education .education-date,
+#education .education-institution,
+.education-date,
+.education-institution {
+  color: #ffffff !important;
+}
+
+#education .education-title,
+.education-title {
+  color: #f3f4f6 !important;
+}
+
+#education .education-location,
+#education .education-grade,
+.education-location,
+.education-grade {
+  color: #e5e7eb !important;
+}
+
+/* Override dark mode styles */
+html.dark #education .education-date,
+html.dark #education .education-institution,
+html.dark .education-date,
+html.dark .education-institution {
+  color: #ffffff !important;
+}
+
+html.dark #education .education-title,
+html.dark .education-title {
+  color: #f3f4f6 !important;
+}
+
+html.dark #education .education-location,
+html.dark #education .education-grade,
+html.dark .education-location,
+html.dark .education-grade {
+  color: #e5e7eb !important;
+}
+
+/* Override any Tailwind text color classes */
+#education h3,
+#education h4,
+#education p {
+  color: inherit !important;
+}
+
+/* Fix education cards in Experience component - ensure equal heights and light text */
+#experience .relative.rounded-xl.p-\[1\.5px\].bg-gradient-to-br {
+  height: 340px !important;
+  min-height: 340px !important;
+  max-height: 340px !important;
+}
+
+#experience .relative.rounded-xl.bg-gradient-to-br.p-6,
+#experience .relative.rounded-xl.bg-gradient-to-br.p-8 {
+  height: 100% !important;
+}
+
+/* Force light text in Experience education cards */
+#experience .text-black {
+  color: #ffffff !important;
+}
+
+/* Force light text in Experience education cards - target by parent context */
+html.dark #experience .text-black,
+html #experience .text-black {
+  color: #ffffff !important;
+}
+
+/* Target education cards specifically in experience section */
+#experience p.text-sm,
+#experience p.text-base,
+#experience p.text-lg,
+#experience p.text-xl {
+  color: #ffffff !important;
+}
+
 .text-gradient {
   @apply bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent;
 }
