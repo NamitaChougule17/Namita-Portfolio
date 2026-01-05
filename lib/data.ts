@@ -81,14 +81,16 @@ export const experiencesData = [
 export const projectsData = [
   {
     title: "Customer Support Call Analytics & Insight Platform",
-    description: "Designed a full-stack analytics platform to transform customer support call data into actionable insights such as sentiment trends, resolution rates, and call performance. Built a scalable FastAPI backend with Supabase and an interactive React + TypeScript dashboard for drill-down analytics. Developed a modular, AI-ready insight engine that balances rule-based logic with future LLM integration.",
+    description: "Built an end-to-end analytics platform for customer support calls, aggregating KPIs such as resolution rates, sentiment, call duration, and customer frustration. Implemented a FastAPI backend with PostgreSQL (Supabase) to model and serve analytics via REST APIs, powering an interactive dashboard with drill-down from high-level metrics to individual call details. Designed a rule-based insight engine with an AI-ready architecture to support future LLM-powered summaries and recommendations while remaining cost-safe.",
     tags: [
+      "Python",
       "FastAPI",
       "Supabase",
       "React",
       "TypeScript",
-      "Python",
-      "Rule-Based & AI-Ready Insights",
+      "Analytics",
+      "Dashboard",
+      "AI-Ready",
     ],
     imageUrl: factchecker,
     githubUrl: "https://github.com/NamitaChougule17/customer_support_analytics",

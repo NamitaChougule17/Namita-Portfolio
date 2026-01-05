@@ -12,7 +12,6 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Intro() {
   const titles = ["Data Engineer", "ETL Developer", "AI Data Engineer", "Analytics Engineer", "BI Developer"];
-  const titleColors = ["text-teal-600 dark:text-teal-400", "text-blue-600 dark:text-blue-400", "text-purple-600 dark:text-purple-400", "text-emerald-600 dark:text-emerald-400", "text-indigo-600 dark:text-indigo-400"];
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
 
   useEffect(() => {
@@ -57,7 +56,7 @@ export default function Intro() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            Hello 👋
+            Hello 
           </motion.h1>
 
           <motion.h1
@@ -72,9 +71,7 @@ export default function Intro() {
           <AnimatePresence mode="wait">
             <motion.h2
               key={titles[currentTitleIndex]}
-              className={`mb-4 text-2xl font-semibold !leading-[1.5] sm:text-3xl ${
-                titleColors[currentTitleIndex % titleColors.length]
-              }`}
+              className="mb-4 text-2xl font-semibold !leading-[1.5] sm:text-3xl text-[#667EEA] dark:text-[#8B7CF6]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -85,7 +82,7 @@ export default function Intro() {
           </AnimatePresence>
 
           <motion.p
-            className="text-lg font-medium !leading-[1.7] sm:text-xl text-gray-700 dark:text-white/90 mb-10"
+            className="text-lg font-medium !leading-[1.7] sm:text-xl text-[#2C2C2C] dark:text-[#E8E8EA] mb-10"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -103,7 +100,7 @@ export default function Intro() {
       >
         <Link
           href="#contact"
-          className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
+          className="group bg-[#1A1A1A] text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-[#2A2A2A] active:scale-105 transition dark:bg-[#1E293B] dark:hover:bg-[#334155]"
           onClick={() => {
             setActiveSection("Contact");
             setTimeOfLastClick(Date.now());
@@ -114,16 +111,16 @@ export default function Intro() {
         </Link>
 
         <a
-          className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer border border-black dark:bg-white/10 dark:text-white/90"
-          href="/images/NamitaChougule_Resume25.pdf"
-          download="NamitaChougule_Resume25.pdf"
+          className="group bg-[#FFFFFF] dark:bg-[#1E293B]/50 px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer border border-[#1A1A1A]/20 dark:border-[#E8E8EA]/20 text-[#1A1A1A] dark:text-[#E8E8EA]"
+          href="/images/NamitaChougule_Resume26.pdf"
+          download="NamitaChougule_Resume26.pdf"
         >
           Download CV
           <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
         </a>
 
         <a
-          className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+          className="bg-[#FFFFFF] dark:bg-[#1E293B]/50 p-4 text-[#2C2C2C] dark:text-[#E8E8EA] hover:text-[#1A1A1A] dark:hover:text-white flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer border border-[#1A1A1A]/20 dark:border-[#E8E8EA]/20"
           href="https://www.linkedin.com/in/namitachougule"
           target="_blank"
         >
@@ -131,7 +128,7 @@ export default function Intro() {
         </a>
 
         <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+          className="bg-[#FFFFFF] dark:bg-[#1E293B]/50 p-4 text-[#2C2C2C] dark:text-[#E8E8EA] flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-[#1A1A1A] dark:hover:text-white active:scale-105 transition cursor-pointer border border-[#1A1A1A]/20 dark:border-[#E8E8EA]/20"
           href="https://github.com/NamitaChougule17"
           target="_blank"
         >
