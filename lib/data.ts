@@ -38,8 +38,8 @@ export const experiencesData = [
     location: "George Mason University",
     date: "Jan 2025 – May 2025",
     description: [
-      "Assisted with graduate-level instruction on database systems.",
-      "Supported topics including schema design, normalization, indexing, SQL, NoSQL, and transactions.",
+      "Assisted with graduate-level instruction and grading on database systems.",
+      "Supported topics including schema design, dimensional modeling, normalization, indexing, SQL, NoSQL, and transactions.",
       "Helped students apply database concepts to real-world systems.",
     ],
     icon: React.createElement(LuBriefcase),
@@ -54,8 +54,10 @@ export const experiencesData = [
       "Led migration of 60+ TB of on-premise data from MS SQL Server to Snowflake.",
       "Designed pipelines processing 1M+ records per day from AWS S3 and relational databases.",
       "Built event-driven streaming pipelines using Kafka (MSK) and Spark Streaming to process 15K+ events/min.",
-      "Implemented dbt models for transformations, testing, and data quality checks.",
-      "Integrated Talend with AWS IAM, S3, and Snowflake for secure, auditable data flows.",
+      "Re-engineered workflows to reduce batch runtime by 50% (12 hrs to 7 hrs), enabling faster reporting cycles.",
+      "Monitored 1,000+ Snowflake and Talend workflows daily, resolving failures and bottlenecks within SLA timelines.",
+      "Developed DBT models on Snowflake to standardize transformations and automated quality checks.",
+      "Assisted in integrating Talend with AWS IAM, S3, and Snowflake for secure and auditable data flows.",
       "Collaborated with analysts and stakeholders in an Agile environment.",
       "Mentored junior engineers and conducted code reviews.",
     ],
@@ -81,7 +83,7 @@ export const experiencesData = [
 export const projectsData = [
   {
     title: "Customer Support Call Analytics & Insight Platform",
-    description: "Built an end-to-end analytics platform for customer support calls, aggregating KPIs such as resolution rates, sentiment, call duration, and customer frustration. Implemented a FastAPI backend with PostgreSQL (Supabase) to model and serve analytics via REST APIs, powering an interactive dashboard with drill-down from high-level metrics to individual call details. Designed a rule-based insight engine with an AI-ready architecture to support future LLM-powered summaries and recommendations while remaining cost-safe.",
+    description: "Built an end-to-end analytics platform for customer support calls, aggregating KPIs such as resolution rates, sentiment, call duration, and customer frustration. Implemented a FastAPI backend with PostgreSQL (Supabase) to serve analytics via REST APIs, powering an interactive dashboard with drill-down to individual call details. Designed a rule-based, AI-ready insight engine to enable future LLM-powered summaries and recommendations in a cost-safe manner.",
     tags: [
       "Python",
       "FastAPI",
